@@ -15,13 +15,14 @@ export class MyApp {
         </header>
 
         <main>
-          <stencil-router>
+          {/* <stencil-router>
             <stencil-route url='/' component='app-home' exact={true}>
             </stencil-route>
 
             <stencil-route url='/profile/:name' component='app-profile'>
             </stencil-route>
-          </stencil-router>
+          </stencil-router> */}
+          <app-home/>
         </main>
       </div>
     );
