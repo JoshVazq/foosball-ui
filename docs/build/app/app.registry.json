@@ -2,21 +2,21 @@
   "namespace": "App",
   "fsNamespace": "app",
   "loader": "../app.js",
-  "corePolyfilled": "es5-build-disabled.js",
   "global": "app.global.js",
-  "core": "app.core.js",
+  "core": "app.m1ld5aly.js",
+  "corePolyfilled": "app.re2yorau.js",
   "components": {
     "app-home": {
-      "$": "app-home"
+      "$": "1xeagp9b"
     },
     "app-profile": {
-      "$": "app-profile"
+      "$": "loettoy3"
     },
     "my-app": {
-      "$": "app-home"
+      "$": "1xeagp9b"
     },
     "stencil-route-link": {
-      "$": "app-home"
+      "$": "1xeagp9b"
     }
   }
 }

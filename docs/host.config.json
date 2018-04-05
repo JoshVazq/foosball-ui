@@ -1,0 +1,37 @@
+{
+  "hosting": {
+    "rules": [
+      {
+        "include": "/foosball-ui/",
+        "headers": [
+          {
+            "name": "Link",
+            "value": "</foosball-ui/build/app/app.re2yorau.js>;rel=preload;as=script"
+          },
+          {
+            "name": "Link",
+            "value": "</foosball-ui/build/app/1xeagp9b.js>;rel=preload;as=script"
+          }
+        ]
+      },
+      {
+        "include": "/foosball-ui/build/app/**",
+        "headers": [
+          {
+            "name": "Cache-Control",
+            "value": "public, max-age=31536000"
+          }
+        ]
+      },
+      {
+        "include": "/foosball-ui/sw.js",
+        "headers": [
+          {
+            "name": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      }
+    ]
+  }
+}
