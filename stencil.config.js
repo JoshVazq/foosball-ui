@@ -1,10 +1,18 @@
+const sass = require('@stencil/sass');
 exports.config = {
   outputTargets: [
     {
       type: 'www',
+      dir: 'docs',
+      serviceWorker: {
+        swSrc: 'src/sw.js'
+      },
       baseUrl: '/foosball-ui',
-      dir: 'docs'
     }
+  ],
+  globalStyle: 'src/global/app.css',
+  plugins: [
+    sass()
   ]
 };
 

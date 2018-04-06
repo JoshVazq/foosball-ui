@@ -23,11 +23,12 @@ declare global {
   interface HTMLAttributes {}
 }
 
-import '@stencil/router';
+import 'ionicons';
+import '@ionic/core';
 
 import {
-  MatchResults,
-} from '@stencil/router';
+  EventEmitter,
+} from '@stencil/core';
 
 declare global {
   interface HTMLAppHomeElement extends HTMLStencilElement {
@@ -58,7 +59,7 @@ declare global {
 
 declare global {
   interface HTMLAppProfileElement extends HTMLStencilElement {
-    'match': MatchResults;
+    'name': string;
   }
   var HTMLAppProfileElement: {
     prototype: HTMLAppProfileElement;
@@ -77,7 +78,39 @@ declare global {
   }
   namespace JSXElements {
     export interface AppProfileAttributes extends HTMLAttributes {
-      'match'?: MatchResults;
+      'name'?: string;
+    }
+  }
+}
+
+
+declare global {
+  interface HTMLLazyImgElement extends HTMLStencilElement {
+    'alt': string;
+    'src': string;
+    'width': number;
+  }
+  var HTMLLazyImgElement: {
+    prototype: HTMLLazyImgElement;
+    new (): HTMLLazyImgElement;
+  };
+  interface HTMLElementTagNameMap {
+    'lazy-img': HTMLLazyImgElement;
+  }
+  interface ElementTagNameMap {
+    'lazy-img': HTMLLazyImgElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'lazy-img': JSXElements.LazyImgAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface LazyImgAttributes extends HTMLAttributes {
+      'alt'?: string;
+      'onLazyImgloaded'?: (event: CustomEvent<HTMLImageElement>) => void;
+      'src'?: string;
+      'width'?: number;
     }
   }
 }
