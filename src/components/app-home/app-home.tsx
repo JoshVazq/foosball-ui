@@ -3,26 +3,32 @@ import { Component } from '@stencil/core';
 
 @Component({
   tag: 'app-home',
-  styleUrl: 'app-home.css'
+  styleUrl: 'app-home.scss'
 })
 export class AppHome {
 
   render() {
     return (
-      <div class='app-home'>
-        <p>
-          Welcome to the Stencil App Starter.
-          You can use this starter to build entire apps all with
-          web components using Stencil!
-          Check out our docs on <a href='https://stenciljs.com'>stenciljs.com</a> to get started.
-        </p>
+      <ion-page>
+        <ion-header>
+          <ion-toolbar color='primary'>
+            <ion-title>Ionic PWA Toolkit</ion-title>
+          </ion-toolbar>
+        </ion-header>
 
-        <stencil-route-link url='/profile/stencil'>
-          <button>
+        <ion-content>
+          <p>
+            Welcome to the Ionic PWA Toolkit.
+            You can use this starter to build entire PWAs all with
+            web components using Stencil and ionic/core! Check out the readme for everything that comes in this starter out of the box and
+            Check out our docs on <a href='https://stenciljs.com'>stenciljs.com</a> to get started.
+          </p>
+
+          <ion-button href={'/profile/stencil'}>
             Profile page
-          </button>
-        </stencil-route-link>
-      </div>
+          </ion-button>
+        </ion-content>
+      </ion-page>
     );
   }
 }

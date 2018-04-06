@@ -2,21 +2,119 @@
   "namespace": "App",
   "fsNamespace": "app",
   "loader": "../app.js",
+  "corePolyfilled": "es5-build-disabled.js",
   "global": "app.global.js",
-  "core": "app.m1ld5aly.js",
-  "corePolyfilled": "app.re2yorau.js",
+  "core": "app.core.js",
   "components": {
     "app-home": {
-      "$": "1xeagp9b"
+      "$": "app-home"
     },
     "app-profile": {
-      "$": "loettoy3"
+      "ios": "app-profile.ios",
+      "md": "app-profile.md"
+    },
+    "ion-animation-controller": {
+      "$": "ion-animation-controller"
+    },
+    "ion-app": {
+      "ios": "my-app.ios",
+      "md": "my-app.md"
+    },
+    "ion-back-button": {
+      "ios": "app-profile.ios",
+      "md": "app-profile.md"
+    },
+    "ion-button": {
+      "ios": "ion-button.ios",
+      "md": "ion-button.md"
+    },
+    "ion-buttons": {
+      "ios": "app-profile.ios",
+      "md": "app-profile.md"
+    },
+    "ion-content": {
+      "ios": "ion-content.ios",
+      "md": "ion-content.md"
+    },
+    "ion-gesture": {
+      "$": "ion-gesture"
+    },
+    "ion-gesture-controller": {
+      "$": "ion-gesture"
+    },
+    "ion-header": {
+      "ios": "ion-content.ios",
+      "md": "ion-content.md"
+    },
+    "ion-icon": {
+      "ios": "app-profile.ios",
+      "md": "app-profile.md"
+    },
+    "ion-input-shims": {
+      "ios": "my-app.ios",
+      "md": "my-app.md"
+    },
+    "ion-item": {
+      "ios": "app-profile.ios",
+      "md": "app-profile.md"
+    },
+    "ion-label": {
+      "ios": "app-profile.ios",
+      "md": "app-profile.md"
+    },
+    "ion-nav": {
+      "ios": "my-app.ios",
+      "md": "my-app.md"
+    },
+    "ion-ripple-effect": {
+      "$": "ion-ripple-effect"
+    },
+    "ion-route": {
+      "ios": "my-app.ios",
+      "md": "my-app.md"
+    },
+    "ion-router": {
+      "ios": "my-app.ios",
+      "md": "my-app.md"
+    },
+    "ion-scroll": {
+      "ios": "ion-content.ios",
+      "md": "ion-content.md"
+    },
+    "ion-status-tap": {
+      "ios": "my-app.ios",
+      "md": "my-app.md"
+    },
+    "ion-tap-click": {
+      "ios": "my-app.ios",
+      "md": "my-app.md"
+    },
+    "ion-title": {
+      "ios": "ion-content.ios",
+      "md": "ion-content.md"
+    },
+    "ion-toast": {
+      "ios": "ion-toast.ios",
+      "md": "ion-toast.md"
+    },
+    "ion-toast-controller": {
+      "ios": "app-profile.ios",
+      "md": "app-profile.md"
+    },
+    "ion-toggle": {
+      "ios": "app-profile.ios",
+      "md": "app-profile.md"
+    },
+    "ion-toolbar": {
+      "ios": "ion-content.ios",
+      "md": "ion-content.md"
+    },
+    "lazy-img": {
+      "$": "lazy-img"
     },
     "my-app": {
-      "$": "1xeagp9b"
-    },
-    "stencil-route-link": {
-      "$": "1xeagp9b"
+      "ios": "my-app.ios",
+      "md": "my-app.md"
     }
   }
 }
