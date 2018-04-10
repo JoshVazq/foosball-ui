@@ -1,0 +1,106 @@
+app-match {
+    ion-page {
+        background: #3171e0;
+        background-image: url(http://e00-marca.uecdn.es/assets/v9/img/lives/eventBoardLive_on.jpg);
+        background-size: cover;
+        background-position: center;
+        .scoreboard {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            height: 100%;
+            .team {
+                ion-avatar {
+                    border: 3px solid white;
+                    width: 75px;
+                    height: 75px;
+                }
+                font-size: 35px;
+                font-weight: 500;
+                color: whitesmoke;
+                width: 215px;
+                height: 100%;
+                .player {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 20px;
+                    text-align: center;
+                    height: 50%;
+                    span {
+                        margin-bottom: auto;
+                    }
+                }
+            }
+            .score-wrapper {
+                margin-bottom: auto;
+                margin-top: 50px;
+                flex-grow: 1;
+                .score {
+                    font-size: 5em;
+                    background: whitesmoke;
+                    color: #464646;
+                    border-radius: 30px;
+                    width: 200px;
+                    text-align: center;
+                    font-weight: bold;
+                    width: 200px;
+                    display: block;
+                    margin: 0 auto;
+                }
+                .goals {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 25px;
+                    .scorer {
+                        color: yellow;
+                    }
+                    
+                    &>div{
+                        width: 50%;
+                        &.locals>div {
+                            display: flex;
+                            .scorer{
+                                margin-left: auto;
+                            }
+                            .partial{
+                                margin-right: 15px;
+                                margin-left: 5px;
+                            }
+                        }
+                        &.visitors>div {
+                            display: flex;
+                            flex-direction: row-reverse;
+                            .scorer{
+                                margin-right: auto;
+                            }
+                            .partial{
+                                margin-right: 5px;
+                                margin-left: 15px;
+                            }
+                        }
+                       
+                    }
+                    
+                }
+            }
+            @media screen and (max-width: 500px) {
+                align-items: unset;
+                .score-wrapper {
+                    position: absolute;
+                    width: 90%;
+                    top: 30px;
+                    margin-left: 5%;
+                    margin-top: 0px;
+                }
+                .team {
+                    margin-top: 150px;
+                    .player {
+                        height: 25%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,2 +1,48 @@
 /*! Built with http://stenciljs.com */
-const{h:n}=window.App;function t(n,t){if(!n){const n="ASSERT: "+t;throw console.error(n),new Error(n)}}function e(n){return n.timeStamp||Date.now()}function o(n){if(n){const t=n.changedTouches;if(t&&t.length>0){const n=t[0];return{x:n.clientX,y:n.clientY}}if(void 0!==n.pageX)return{x:n.pageX,y:n.pageY}}return{x:0,y:0}}function r(n){return function(n,t){const e=n._original||n;return{_original:n,emit:function(n,t=0){let e;return(...o)=>{clearTimeout(e),e=setTimeout(n,t,...o)}}(e.emit.bind(e),0)}}(n)}export{o as pointerCoord,t as assert,e as now,r as deferEvent};
+const { h } = window.App;
+
+function assert(actual, reason) {
+    if (!actual) {
+        const message = 'ASSERT: ' + reason;
+        console.error(message);
+        debugger; // tslint:disable-line
+        throw new Error(message);
+    }
+}
+function now(ev) {
+    return ev.timeStamp || Date.now();
+}
+function pointerCoord(ev) {
+    // get X coordinates for either a mouse click
+    // or a touch depending on the given event
+    if (ev) {
+        const changedTouches = ev.changedTouches;
+        if (changedTouches && changedTouches.length > 0) {
+            const touch = changedTouches[0];
+            return { x: touch.clientX, y: touch.clientY };
+        }
+        if (ev.pageX !== undefined) {
+            return { x: ev.pageX, y: ev.pageY };
+        }
+    }
+    return { x: 0, y: 0 };
+}
+function deferEvent(event) {
+    return debounceEvent(event, 0);
+}
+function debounceEvent(event, wait) {
+    const original = event._original || event;
+    return {
+        _original: event,
+        emit: debounce(original.emit.bind(original), wait)
+    };
+}
+function debounce(func, wait = 0) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(func, wait, ...args);
+    };
+}
+
+export { pointerCoord, assert, now, deferEvent, debounceEvent };

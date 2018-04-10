@@ -1,0 +1,49 @@
+app-play {
+    ion-scroll {
+        padding: 15px;
+    }
+    ion-list.users {
+        ion-avatar {
+            margin-right: 10px;
+        }
+        .positions {
+            margin-left: auto;
+            ion-button:nth-child(n+3) {
+                    --ion-color-primary: #e03131;
+                    --ion-color-primary-shade: #ff3838;
+            }
+        }
+    }
+    ion-card.summary {
+        padding: 10px;
+        .players {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            .team {
+                display: flex;
+                flex-grow: 1;
+                max-width: 200px;
+                justify-content: space-evenly;
+                .player {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    span {
+                        text-align: center;
+                        min-height: 20px;
+                    }
+                }
+                ion-avatar {
+                    border: 3px solid #3171e0;
+                }
+                &:last-child ion-avatar {
+                    border: 3px solid #e03131;
+                }
+            }
+            .versus {
+                font-size: 40px;
+            }
+        }
+    }
+}

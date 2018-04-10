@@ -7,6 +7,7 @@ exports.config = {
       serviceWorker: {
         swSrc: 'src/sw.js'
       },
+      baseUrl: '/foosball-ui',
     }
   ],
   globalStyle: 'src/global/app.css',

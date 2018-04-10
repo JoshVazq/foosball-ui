@@ -58,6 +58,60 @@ declare global {
 
 
 declare global {
+  interface HTMLAppMatchElement extends HTMLStencilElement {
+    'matchId': string;
+  }
+  var HTMLAppMatchElement: {
+    prototype: HTMLAppMatchElement;
+    new (): HTMLAppMatchElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-match': HTMLAppMatchElement;
+  }
+  interface ElementTagNameMap {
+    'app-match': HTMLAppMatchElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-match': JSXElements.AppMatchAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppMatchAttributes extends HTMLAttributes {
+      'matchId'?: string;
+    }
+  }
+}
+
+
+declare global {
+  interface HTMLAppPlayElement extends HTMLStencilElement {
+
+  }
+  var HTMLAppPlayElement: {
+    prototype: HTMLAppPlayElement;
+    new (): HTMLAppPlayElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-play': HTMLAppPlayElement;
+  }
+  interface ElementTagNameMap {
+    'app-play': HTMLAppPlayElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-play': JSXElements.AppPlayAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppPlayAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
   interface HTMLAppProfileElement extends HTMLStencilElement {
     'name': string;
   }

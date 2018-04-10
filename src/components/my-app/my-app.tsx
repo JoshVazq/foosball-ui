@@ -42,7 +42,8 @@ export class MyApp {
       <ion-app>
         <main>
           <ion-router useHash={false}>
-            <ion-route url='/' component='app-home'></ion-route>
+            <ion-route url='/' component='app-play'></ion-route>
+            <ion-route url='/match/:matchId' component='app-match'></ion-route>
             <ion-route url='/profile/:name' component='app-profile'></ion-route>
 
             <ion-nav></ion-nav>

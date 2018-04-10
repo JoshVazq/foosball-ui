@@ -2,4 +2,9 @@ app-profile {
   ion-scroll {
     padding: 15px;
   }
+  ion-toggle{
+    input{
+      display: none;
+    }
+  }
 }

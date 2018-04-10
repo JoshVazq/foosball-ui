@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Ionic PWA Toolkit</title>
@@ -14,16 +15,33 @@
 
   <meta http-equiv="x-ua-compatible" content="IE=Edge">
 
-  <link href="./build/app.css" rel="stylesheet">
-  <script src="./build/app.js"></script>
+  <link href="/build/app.css" rel="stylesheet">
+  <script src="/build/app.js"></script>
 
-  <link rel="apple-touch-icon" href="./assets/icon/icon.png">
-  <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.ico">
-  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="/assets/icon/icon.png">
+  <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico">
+  <link rel="manifest" href="/manifest.json">
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    const config = {
+      apiKey: "AIzaSyBuFQleBcWXsmbFudKAOwNzLt_wbJ3CFEg",
+      authDomain: "foosball-ui.firebaseapp.com",
+      databaseURL: "https://foosball-ui.firebaseio.com",
+      projectId: "foosball-ui",
+      storageBucket: "foosball-ui.appspot.com",
+      messagingSenderId: "511962601846"
+    };
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+  </script>
 </head>
+
 <body>
 
   <my-app></my-app>
 
 </body>
+
 </html>
