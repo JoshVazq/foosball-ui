@@ -12,6 +12,9 @@ exports.config = {
   globalStyle: 'src/global/app.css',
   plugins: [
     sass()
+  ],
+  copy: [
+    { src: 'dragAndDrop.js' }
   ]
 };
 

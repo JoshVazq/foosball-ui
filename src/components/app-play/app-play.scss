@@ -2,6 +2,17 @@ app-play {
     ion-scroll {
         padding: 15px;
     }
+    .user-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        ion-avatar {
+            margin: 10px;
+            width: 100px;
+            height: 100px;
+            -webkit-user-drag: element;
+        }
+    }
     ion-list.users {
         ion-avatar {
             margin-right: 10px;
@@ -9,8 +20,8 @@ app-play {
         .positions {
             margin-left: auto;
             ion-button:nth-child(n+3) {
-                    --ion-color-primary: #e03131;
-                    --ion-color-primary-shade: #ff3838;
+                --ion-color-primary: #e03131;
+                --ion-color-primary-shade: #ff3838;
             }
         }
     }

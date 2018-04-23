@@ -14,6 +14,7 @@ export class AppMatch {
     @State() match = null;
     @State() locals = null;
     @State() visitors = null;
+    @State() resets = [];
     @Prop() matchId: string;
 
     componentWillLoad() {
@@ -23,6 +24,7 @@ export class AppMatch {
                 this.match = doc.data();
                 this.locals = { score: 0, goals: [], ...this.match.locals };
                 this.visitors = { score: 0, goals: [], ...this.match.visitors };
+                this.resets = this.match.resets || [];
                 if (this.match.endTime) {
                     this.isFinished = true;
                 }
@@ -34,6 +36,51 @@ export class AppMatch {
             console.log("Error getting document:", error);
         });
 
+    }
+
+    async presentNewMatchAlert() {
+        const alertController = document.querySelector('ion-alert-controller');
+        await alertController.componentOnReady();
+
+        const alert = await alertController.create({
+            header: 'New Match',
+            message: 'The last one?? ',
+            buttons: [
+                {
+                    text: 'Same Teams',
+                    handler: () => {
+                        this.newMatch();
+                    }
+                }, {
+                    text: 'New Teams',
+                    handler: () => {
+                        location.href = '/';
+                    }
+                }
+            ]
+        });
+        return await alert.present();
+    }
+    async presentResetAlert() {
+        const alertController = document.querySelector('ion-alert-controller');
+        await alertController.componentOnReady();
+
+        const alert = await alertController.create({
+            header: 'Reset',
+            message: 'Do you have the nuts to do it??',
+            buttons: [{
+                text: 'Reset',
+                handler: () => {
+                    this.resetGame();
+
+                }
+            },
+            {
+                text: 'I\'m a coward'
+            }
+            ]
+        });
+        return await alert.present();
     }
     score(teamName, player) {
         if (this.isFinished) {
@@ -59,15 +106,52 @@ export class AppMatch {
                 player: { displayName: player.displayName, id: player.id }
             }
         ]
-        if (this[teamName].score === 6) {
-            this.isFinished = true;
-            endTime = date;
-        }
+        if (this[teamName].score === 1 && this.locals.score === this.visitors.score) {
+            if (!this.resets.length) {
+                this.resetGame();
+            }
+            else {
+                this.presentResetAlert();
+            }
+        } else
+            if (this[teamName].score === 6) {
+                this.isFinished = true;
+                endTime = date;
+            }
         this.matchRef.update({
             locals: this.locals,
             visitors: this.visitors,
             endTime
+        }).then(() => {
+            if (this.isFinished) {
+                this.presentNewMatchAlert();
+            }
         })
+    }
+    resetGame() {
+        this.locals = { ...this.locals, score: 0 };
+        this.visitors = { ...this.visitors, score: 0 };
+        this.resets = [...this.resets, { time: new Date().getTime() - this.match.startTime }]
+        this.matchRef.update({
+            locals: this.locals,
+            visitors: this.visitors,
+            resets: this.resets
+        })
+    }
+    newMatch() {
+        db.collection("matches").add({
+            startTime: new Date(),
+            locals: { ...this.locals, score: 0, goals: [] },
+            visitors: { ...this.visitors, score: 0, goals: [] },
+        })
+            .then(function (docRef) {
+                const teamId = docRef.id;
+                window.location.href = `/match/${teamId}`
+            })
+            .catch(function (error) {
+                //TODO, handle error
+                console.error("Error adding document: ", error);
+            });
     }
     getSummaryPlayer(team, player) {
         return <div class="player">
@@ -90,6 +174,7 @@ export class AppMatch {
         const locals = this.locals,
             visitors = this.visitors;
         return <div class="scoreboard">
+            <ion-alert-controller></ion-alert-controller>
             <div class="team">
                 {[
                     this.getSummaryPlayer('locals', locals.DEF),
@@ -100,10 +185,10 @@ export class AppMatch {
                 <span class="score">{locals.score} - {visitors.score}</span>
                 <div class="goals">
                     <div class="locals">
-                        {this.getGoals(locals)}
+                        {/* this.getGoals(locals) */}
                     </div>
                     <div class="visitors">
-                        {this.getGoals(visitors)}
+                        {/* this.getGoals(visitors) */}
 
                     </div>
 

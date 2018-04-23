@@ -15,6 +15,7 @@ export class AppPlay {
   @State() players = [null, null, null, null];
   @Prop({ connect: 'ion-toast-controller' }) toastCtrl: ToastController;
 
+
   componentWillLoad() {
     db.collection("users").get().then((querySnapshot) => {
       const users = []
@@ -57,6 +58,12 @@ export class AppPlay {
       return player;
     })
   }
+  selectNextPlayer(user) {
+    const index = this.players.findIndex(player => player === null);
+    if (index !== -1) {
+      this.selectPlayer(index, user)
+    }
+  }
   getSlicedPlayer({ id, displayName, imageURL }) {
     return { id, displayName, imageURL };
   }
@@ -77,12 +84,23 @@ export class AppPlay {
     })
       .then(function (docRef) {
         const teamId = docRef.id;
-        window.location.href = `match/${teamId}`
+        window.location.href = `/match/${teamId}`
       })
       .catch(function (error) {
         //TODO, handle error
         console.error("Error adding document: ", error);
       });
+  }
+  dragAvatar(event, index) {
+    console.log('startDrag', event);
+    event.dataTransfer.setData("player", index);
+
+  }
+  onDrop(event, i) {
+    const playerIndex = event.dataTransfer.getData('player');
+    console.log('drop player', );
+    this.selectPlayer(i, this.filteredPersons[playerIndex])
+
   }
   renderUserList() {
     return <ion-list class="users">
@@ -105,10 +123,20 @@ export class AppPlay {
       }
     </ion-list>;
   }
+  renderUsers() {
+    return <div class="user-list">
+      {
+        this.filteredPersons.map((user, i) =>
+          <ion-avatar draggable={true} onClick={() => this.selectNextPlayer(user)} onDragStart={(event) => this.dragAvatar(event, i)}>
+            <img src={user.imageURL} />
+          </ion-avatar>)
+      }
+    </div>
+  }
   getSummaryPlayer(index) {
     const player = this.players[index];
     return <div class="player">
-      <ion-avatar>
+      <ion-avatar onDrop={(event) => this.onDrop(event, index)} onDragOver={(event) => event.preventDefault()}>
         <img src={player ? player.imageURL : '/assets/images/default_avatar.jpg'} />
       </ion-avatar>
       <span>
@@ -150,7 +178,7 @@ export class AppPlay {
           <ion-searchbar onIonInput={(e) => this.search(e.target)}></ion-searchbar>
           ,
           <ion-content>
-            {this.renderUserList()}
+            {this.renderUsers()}
           </ion-content>,
           <ion-footer>
             {this.renderSummary()}

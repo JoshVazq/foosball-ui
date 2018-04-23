@@ -3,20 +3,21 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Ionic PWA Toolkit</title>
+  <title>Foosball App</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <meta name="description" content="Welcome to the Ionic PWA Toolkit. You can use this starter to build fast PWAs using Ionic and Stencil!">
+  <meta name="description" content="Shame!Shame!Shame!Shame!Shame!">
   <meta name="theme-color" content="#16161d">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Ionic PWA">
+  <meta name="apple-mobile-web-app-title" content="Foosball App">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
   <meta http-equiv="x-ua-compatible" content="IE=Edge">
 
   <link href="/build/app.css" rel="stylesheet">
   <script src="/build/app.js"></script>
+  <script src="/dragAndDrop.js"></script>
 
   <link rel="apple-touch-icon" href="/assets/icon/icon.png">
   <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico">
@@ -25,7 +26,7 @@
   <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
   <script>
     // Initialize Firebase
-    const config = {
+    let config = {
       apiKey: "AIzaSyBuFQleBcWXsmbFudKAOwNzLt_wbJ3CFEg",
       authDomain: "foosball-ui.firebaseapp.com",
       databaseURL: "https://foosball-ui.firebaseio.com",
@@ -33,6 +34,14 @@
       storageBucket: "foosball-ui.appspot.com",
       messagingSenderId: "511962601846"
     };
+    config = {
+      apiKey: "AIzaSyDUplI27g9l_wS7BY9CsCUicyqZJxw2biE",
+      authDomain: "foosball-ui-dev.firebaseapp.com",
+      databaseURL: "https://foosball-ui-dev.firebaseio.com",
+      projectId: "foosball-ui-dev",
+      storageBucket: "",
+      messagingSenderId: "1059925471458"
+    }
     firebase.initializeApp(config);
     var db = firebase.firestore();
   </script>
