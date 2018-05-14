@@ -1,4 +1,5 @@
 import { Component, Prop, State } from '@stencil/core';
+import { PLAYER_POSITION } from '../../helpers/utils';
 
 
 declare var db;
@@ -82,7 +83,7 @@ export class AppMatch {
         });
         return await alert.present();
     }
-    score(teamName, player) {
+    score(teamName, player, position) {
         if (this.isFinished) {
             return;
         }
@@ -103,7 +104,7 @@ export class AppMatch {
                     locals: this.locals.score,
                     visitors: this.visitors.score
                 },
-                player: { displayName: player.displayName, id: player.id }
+                player: { displayName: player.displayName, id: player.id, position }
             }
         ]
         if (this[teamName].score === 1 && this.locals.score === this.visitors.score) {
@@ -153,9 +154,9 @@ export class AppMatch {
                 console.error("Error adding document: ", error);
             });
     }
-    getSummaryPlayer(team, player) {
+    getSummaryPlayer(team, player, position) {
         return <div class="player">
-            <ion-avatar onClick={() => this.score(team, player)}>
+            <ion-avatar onClick={() => this.score(team, player, position)}>
                 <img src={player ? player.imageURL : '/assets/images/default_avatar.jpg'} />
             </ion-avatar>
             <span>
@@ -177,8 +178,8 @@ export class AppMatch {
             <ion-alert-controller></ion-alert-controller>
             <div class="team">
                 {[
-                    this.getSummaryPlayer('locals', locals.DEF),
-                    this.getSummaryPlayer('locals', locals.ATK)
+                    this.getSummaryPlayer('locals', locals.DEF, PLAYER_POSITION.DEF),
+                    this.getSummaryPlayer('locals', locals.ATK, PLAYER_POSITION.ATK)
                 ]}
             </div>
             <div class="score-wrapper">
@@ -196,8 +197,8 @@ export class AppMatch {
             </div>
             <div class="team">
                 {[
-                    this.getSummaryPlayer('visitors', visitors.ATK),
-                    this.getSummaryPlayer('visitors', visitors.DEF)
+                    this.getSummaryPlayer('visitors', visitors.ATK, PLAYER_POSITION.ATK),
+                    this.getSummaryPlayer('visitors', visitors.DEF, PLAYER_POSITION.DEF)
                 ]}
             </div>
         </div>;

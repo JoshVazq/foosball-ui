@@ -25,36 +25,78 @@ app-play {
             }
         }
     }
-    ion-card.summary {
-        padding: 10px;
-        .players {
+    .players {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background-image: url(/assets/images/foosball-table.svg);
+        width: 100%;
+        height: 40%;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        @media only screen and (min-width: 455px) {
+            height: 50%;
+        }
+        .team {
             display: flex;
-            align-items: center;
-            justify-content: space-around;
-            .team {
-                display: flex;
-                flex-grow: 1;
-                max-width: 200px;
-                justify-content: space-evenly;
+            width: 60%;
+            justify-content: space-between;
+            @media only screen and (min-width: 455px) {
+                max-width: 325px;
+                &:first-child {
+                    margin-left: 56px;
+                }
+                &:last-child {
+                    margin-left: -56px;
+                }
                 .player {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    span {
-                        text-align: center;
-                        min-height: 20px;
+                    ion-avatar {
+                        width: 100px;
+                        height: 100px;
                     }
                 }
-                ion-avatar {
-                    border: 3px solid #3171e0;
-                }
-                &:last-child ion-avatar {
-                    border: 3px solid #e03131;
+            }
+            ion-avatar {
+                border: 3px solid;
+            }
+            &:first-child {
+                .player {
+                    ion-avatar {
+                        border-color: #e03131;
+                    }
                 }
             }
-            .versus {
-                font-size: 40px;
+            &:last-child {
+                .player {
+                    ion-avatar {
+                        border-color: #3171e0;
+                    }
+                }
+            }
+            .player {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                span {
+                    text-align: center;
+                    min-height: 20px;
+                    background: white;
+                    margin-top: 6px;
+                    padding: 5px;
+                    border: 1px solid #5f5f5f;
+                }
             }
         }
+        .versus {
+            font-size: 40px;
+            font-weight: bold;
+            background: white;
+            border-radius: 50%;
+        }
+    }
+    .footer {
+        padding: 10px;
     }
 }

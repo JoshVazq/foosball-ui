@@ -1,0 +1,2 @@
+/*! Built with http://stenciljs.com */
+const{h:t}=window.App;class a{static get is(){return"ion-avatar"}static get host(){return{theme:"avatar"}}static get style(){return"ion-avatar{display:block}ion-avatar img{width:100%;height:100%;object-fit:cover}.avatar-ios{border-radius:50%;width:48px;height:48px}.avatar-ios img,.avatar-ios ion-img{border-radius:50%;overflow:hidden}"}static get styleMode(){return"ios"}}export{a as IonAvatar};

@@ -1,5 +1,6 @@
 import { Component, Prop, State } from '@stencil/core';
 import { ToastController } from '@ionic/core';
+import { PLAYER_POSITION } from '../../helpers/utils';
 
 
 declare var db;
@@ -8,7 +9,7 @@ declare var db;
   styleUrl: 'app-play.scss'
 })
 export class AppPlay {
-  playersPositions = ['DEF', 'ATK', 'ATK', 'DEF'];
+  playersPositions = [PLAYER_POSITION.DEF, PLAYER_POSITION.ATK, PLAYER_POSITION.ATK, PLAYER_POSITION.DEF];
   @State() loading = true;
   @State() users: Array<any>;
   @State() filteredPersons: Array<any>;
@@ -74,12 +75,12 @@ export class AppPlay {
     db.collection("matches").add({
       startTime: new Date(),
       locals: {
-        'DEF': this.getSlicedPlayer(this.players[0]),
-        'ATK': this.getSlicedPlayer(this.players[1])
+        [PLAYER_POSITION.DEF]: this.getSlicedPlayer(this.players[0]),
+        [PLAYER_POSITION.ATK]: this.getSlicedPlayer(this.players[1])
       },
       visitors: {
-        'ATK': this.getSlicedPlayer(this.players[2]),
-        'DEF': this.getSlicedPlayer(this.players[3])
+        [PLAYER_POSITION.ATK]: this.getSlicedPlayer(this.players[2]),
+        [PLAYER_POSITION.DEF]: this.getSlicedPlayer(this.players[3])
       },
     })
       .then(function (docRef) {
@@ -139,31 +140,32 @@ export class AppPlay {
       <ion-avatar onDrop={(event) => this.onDrop(event, index)} onDragOver={(event) => event.preventDefault()}>
         <img src={player ? player.imageURL : '/assets/images/default_avatar.jpg'} />
       </ion-avatar>
-      <span>
-        {player ? player.displayName : ''}
-      </span>
+      {player ? <span>{player.displayName}</span> : null}
+
+
     </div>;
 
   }
   renderSummary() {
-    return <ion-card class="summary">
-      <form onSubmit={(e) => this.startMatch(e)}>
-        <div class="players">
-          <div class="team">
-            {this.getSummaryPlayer(0)}
-            {this.getSummaryPlayer(1)}
-          </div>
-          <span class="versus">VS</span>
-          <div class="team">
-            {this.getSummaryPlayer(2)}
-            {this.getSummaryPlayer(3)}
-          </div>
-        </div>
-        <ion-button expand="full" type="submit"
-          disabled={this.players.some((player) => !player)}
-        >Start Match</ion-button>
-      </form>
-    </ion-card>;
+    return <div class="players">
+      <div class="team">
+        {this.getSummaryPlayer(2)}
+        {this.getSummaryPlayer(3)}
+      </div>
+      <span class="versus">VS</span>
+      <div class="team">
+        {this.getSummaryPlayer(0)}
+        {this.getSummaryPlayer(1)}
+      </div>
+    </div>;
+  }
+  renderFooter() {
+    return <form onSubmit={(e) => this.startMatch(e)} class="footer">
+      <ion-button expand="full" type="submit"
+        disabled={this.players.some((player) => !player)}>
+        Start Match
+      </ion-button>
+    </form>;
   }
   render() {
     return (
@@ -179,9 +181,11 @@ export class AppPlay {
           ,
           <ion-content>
             {this.renderUsers()}
+
           </ion-content>,
+          this.renderSummary(),
           <ion-footer>
-            {this.renderSummary()}
+            {this.renderFooter()}
           </ion-footer>
         ] : <ion-content>Not users yet</ion-content>) : <ion-content>Loading Users</ion-content>
 
